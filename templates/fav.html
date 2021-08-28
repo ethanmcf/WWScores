@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content="..." />
+    <title>Daves Scores</title>
+  </head>
+  <body onload="load()">
+    <script>
+      let count = 0;
+      function trans(){
+        count++;
+        document.getElementById("dropMenu").classList.toggle("trans-smooth")
+        
+        if(count%2 != 0){
+          setTimeout(function() {
+            document.getElementById("menu-btn2").classList.toggle("show")
+          }, (100));
+          
+          setTimeout(function() {
+            document.getElementById("menu-btn1").classList.toggle("show")
+          }, (250));
+          setTimeout(function() {
+            document.getElementById("menu-btn3").classList.toggle("show")
+          }, (350));
+        }else{
+          setTimeout(function() {
+            document.getElementById("menu-btn2").classList.toggle("show")
+          }, (250));
+          
+          setTimeout(function() {
+            document.getElementById("menu-btn1").classList.toggle("show")
+          }, (50));
+          setTimeout(function() {
+            document.getElementById("menu-btn3").classList.toggle("show")
+          }, (0));
+        }
+        document.getElementById("head").classList.toggle("adjust-header")
+        document.getElementById("menu-img").classList.toggle("active-menu")
+      }
+      function getNewDate(){
+        document.getElementById("cur-date").innerHTML = document.getElementById('datePicker').value
+      }
+      function dropbarLogin() {
+        document.getElementById("dropLogin").classList.toggle("show");
+      }
+      function dropAddOptions(){
+        document.getElementById('leagues').classList.toggle('show')
+        document.getElementById('fav-teams').classList.toggle('hide')
+      }
+      function dropAdjsut(){
+        document.getElementById('dropFavs').classList.toggle('show')
+      }
+      function logout(){
+        document.getElementById('adjust-favs').classList.toggle('show')
+        document.getElementById('login-btn').classList.toggle('hide')
+      }
+      function load(){
+        loginChangeButton()
+        changeButtonNames()
+        changeFavList()
+        changeGamesLinks()
+        changeTeamId()
+      }
+      function changeGamesLinks(){
+        var links = document.getElementById("link-lst").innerHTML; 
+        var link_lst = links.split(" "); 
+        var obj = document.get;
+        var myobj = document.getElementById("link-lst");
+        myobj.remove();
+        
+        if(document.body.contains(document.getElementById('fav-no-game'))){
+          //pass
+        } else{
+          var teams = document.getElementsByClassName("fav");
+          var count = 0;
+          var j = 0;
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "fav-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "fav-href" + String(j+1);
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+          }
+        }
+      }
+      function changeButtonNames(){
+        var delBtns = document.getElementsByClassName('sub-fav')
+        for(var i = 0;i <delBtns.length;i++){
+          id = "del-btn" + String(i)
+          delBtns[i].id = id
+          document.getElementById(id).name = id
+        }
+      }
+      function changeFavList(){
+        var lst = document.getElementsByClassName('fav-list')
+        for(var i = 0;i < lst.length;i++){
+          id = "fav-list" + String(i);
+          lst[i].id = id;
+          document.getElementById(id).id = id;
+          
+          var favLength = document.getElementById(id).innerHTML.split('<')[0].trim();
+          if(favLength.length > 16){
+            document.getElementById(id).innerHTML = favLength.substring(0,16) + "..." + '<img class="sub-imagecoverdel"' + 'src="' + "{{url_for('static',filename='images/trash.png')}}" + '">' + '<input type="submit" class="sub-fav" name="del-btn' + String(i) +'" onclick="updateDeleted(this.id)">';
+          }
+        }
+      }
+      function updateDeleted(id){
+        setTimeout(function() {
+          the_id = 'fav-list' + id[id.length - 1]
+          var obj = document.get;
+          var myobj = document.getElementById(the_id);
+          myobj.remove();
+          }, (500));
+      }
+      function loginChangeButton(){
+        var login = document.getElementById("down-center-fav").innerHTML
+        if (login == "Not Logged In"){
+          //pass
+        }else{
+          document.getElementById('adjust-favs').classList.toggle('show')
+          document.getElementById('login-btn').classList.toggle('hide')
+          document.getElementById('cur-date').classList.toggle('adjust-date')
+        }
+      }
+      function pickedAdd(val){
+        document.getElementById('user-login').value = val;
+      }
+      var clickImgDict = {'NHL':0,'AHL':0,'OHL':0,'NCAA':0,'USHL':0,'BCHL':0,'OJHL':0}
+      function dropTeamOptions(name,img_id){ 
+        document.getElementById(name).classList.toggle('show');
+        //change image source
+        var clickedImg = clickImgDict[name];
+        clickImgDict[name]++;
+        if(clickImgDict[name] %2 == 0){
+          document.getElementById(img_id).src= "/static/images/dropdown.png";
+          document.getElementsByName(name)[0].classList.toggle('toggleactive');
+        }else{
+          document.getElementById(img_id).src= "/static/images/upsidedowndrop.png";
+          document.getElementsByName(name)[0].classList.toggle('toggleactive');
+        }
+      }
+      function changeTeamId(){
+          var teams = document.getElementsByClassName("team-option");
+          for (var i = 0; i < teams.length;i++){
+              _id = teams[i].innerHTML;
+              teams[i].id = _id;
+          }
+      }
+    </script>
+    <div class="page-wrapper">
+      <div id="head" class="header">
+
+        <div class="menu-right-favs">
+          <img id="menu-img" class="dropbtn-menu" src="{{url_for('static',filename='images/menu.png')}}" onclick="trans()">
+          <div id="dropMenu" class="menu-drop-fav">
+            <form action="{{url_for('home')}}" method="POST">
+              <button id="menu-btn2" class="menu-btns" type="submit" value="Home">All Scores</button>
+            </form>
+            <form action="{{url_for('favTeam')}}" method="POST">
+              <button id="menu-btn1" class="menu-btns" type="submit" value="Fav">Favorites</button>
+            </form>
+            <form action="{{url_for('createUser')}}" method="POST">
+              <button id="menu-btn3" class="menu-btns" type="submit" value="Fav">Create User</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="header-center">
+          <p id="down-center-fav">{{user_name}}</p>
+        </div>
+
+        <div class="header-left">
+          <div class="dropdown">
+            <button class="dropbtn-adjust" name="adjust" id="adjust-favs" onclick="dropAdjsut()">Teams</button>
+            <form autocomplete="off" action="{{url_for('favTeam')}}" method="POST">
+              <div id="dropFavs" class="dropdown-content">
+                <input name="add-team" id="user-login" onclick="dropAddOptions()" placeholder="Add team...">
+                <div id="leagues" class="league">
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-1" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('NHL','imgdrop-1')">
+                    <p class="leage-title" name='NHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-1')">{{all_league[0].league_name}}</p>
+                  </div>
+                    <div id="NHL" class="league-teams">
+                    {%for name in all_data_teams[0]%}
+                    <p id="" class="team-option" onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-2" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('AHL','imgdrop-2')">
+                    <p class="leage-title" name='AHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-2')">{{all_league[1].league_name}}</p>
+                  </div>
+                  <div id="AHL" class="league-teams">
+                    {%for name in all_data_teams[1]%}
+                    <p id="" class="team-option" onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                  
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-3" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('OHL','imgdrop-3')">
+                    <p class="leage-title" name='OHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-3')">{{all_league[2].league_name}}</p>
+                  </div>
+                  <div id="OHL" class="league-teams">
+                    {%for name in all_data_teams[2]%}
+                    <p id="" class="team-option"onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                  
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-4" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('NCAA','imgdrop-4')">
+                    <p class="leage-title" name='NCAA' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-4')">{{all_league[3].league_name}}</p>
+                  </div>
+                  <div id="NCAA" class="league-teams">
+                    {%for name in all_data_teams[3]%}
+                    <p id="" class="team-option"onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                  
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-5" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('USHL','imgdrop-5')">
+                    <p class="leage-title" name='USHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-5')">{{all_league[4].league_name}}</p>
+                  </div>
+                  <div id="USHL" class="league-teams">
+                    {%for name in all_data_teams[4]%}
+                    <p id="" class="team-option"onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                  
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-6" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('BCHL','imgdrop-6')">
+                    <p class="leage-title" name='BCHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-6')">{{all_league[5].league_name}}</p>
+                  </div>
+                  <div id="BCHL" class="league-teams">
+                    {%for name in all_data_teams[5]%}
+                    <p id="" class="team-option"onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                  
+                  <div id='contain-league-title'> 
+                    <img class="drop-img" id="imgdrop-7" src="{{url_for('static',filename='images/dropdown.png')}}" onclick="dropTeamOptions('OJHL','imgdrop-7')">
+                    <p class="leage-title" name='OJHL' onclick="dropTeamOptions(this.attributes['name'].value,'imgdrop-7')">{{all_league[6].league_name}}</p>
+                  </div>
+                  <div id="OJHL" class="league-teams">
+                    {%for name in all_data_teams[6]%}
+                    <p id="" class="team-option"onclick="pickedAdd(this.attributes['id'].value)">{{name.team_name}}</p>
+                    {%endfor%}
+                  </div>
+                </div>
+                <img class="sub-imagecover" src="{{url_for('static',filename='images/add.jpg')}}">
+                <input type="submit" name="add-btn" class="add-team-btn">
+                <div id="fav-teams">
+                  {%for team in fav_teams%}
+                  <p class="fav-list">
+                    {{team}}
+                    <img class="sub-imagecoverdel" src="{{url_for('static',filename='images/trash.png')}}">
+                    <input type="submit" class="sub-fav" name="del-btn" onclick="updateDeleted(this.id)">
+                  </p>
+                  {%endfor%}
+                  <p></p><button type="submit" value="Log out" class="logout" name="log-out" onclick="logout()">Log out</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="dropdown">
+            <button " class="dropbtn" name="login" id="login-btn" onclick="dropbarLogin()">Login</button>
+            <form autocomplete="off" action="{{url_for('favTeam')}}" method="POST" onsubmit="load()">
+              <div id="dropLogin" class="dropdown-content">
+                <input name="logs" id="user-login" placeholder="Username ...">
+              </div>
+            </form>
+          </div>
+          <div class="dropdown">
+            <form action="{{url_for('favTeam')}}" method="POST">
+                <img class="sub-imagecover-date-prev" src="{{url_for('static',filename='images/prev_date.png')}}">
+                <button class="prev-date" value="PREVIOUS" name='previous'></button>
+                <p class = "current-date"  id="cur-date">
+                  {{date}}
+                </p>
+                <img class="sub-imagecover-date-next" src="{{url_for('static',filename='images/next_date.png')}}">
+                <button class="next-date" value="NEXT" name='next'></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="sub">
+        <h1 id="nhl-index">Favourited Teams</h1>
+      </div>
+      <p id="link-lst">{{links}}</p>
+
+      {%if l_favs > 0%}
+      <div class="num-game">
+        <h1>{{num_favs}} Games</h1>
+      </div> 
+      {%for game in favs%}
+      <div id="favors" class="output">
+        {%for team in game%}
+        <p>
+          <a class="fav" id ="fav-href" href="">
+            {{team}}
+          </a>
+        </p>
+        {%endfor%}
+      </div>
+      {%endfor%}
+      {%else%}
+      <div id="fav-no-game"class="no-game">
+        <h1>No Games</h1>
+      </div>  
+      {%endif%}
+    </div>
+    
+  </body>
+  <footer>
+    <div class='center-foot'>
+      <p id="foot">Developed by Ethan McFarland | David Speciale</p>
+    </div>
+  </footer> 
+</html>

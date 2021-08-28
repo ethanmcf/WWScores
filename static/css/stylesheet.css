@@ -1,0 +1,590 @@
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+.no-game{
+  font-size: 10px;
+  opacity: .5;
+  text-align: center;
+  background-color: rgb(224, 222, 222);
+  margin-top: -20px;
+  margin-bottom: 50px;
+}
+.num-game{
+  font-size: 10px;
+  opacity: .5;
+  text-align: center;
+  background-color: rgb(224, 222, 222);
+  margin-top: -20px;
+  margin-bottom: 50px;
+}
+#ojhl-link-lst,#nhl-link-lst,#ahl-link-lst,#ohl-link-lst,#ncaa-link-lst,#ushl-link-lst,#bchl-link-lst,#link-lst{
+  opacity: 0;
+}
+.nhl,.ojhl,.ushl,.ohl,.bchl,.ncaa,.ahl,.sear,.fav{
+  color: black;
+  text-decoration: none;
+}
+.nhl:hover,.ojhl:hover,.ushl:hover,.ohl:hover,.bchl:hover,.ncaa:hover,.ahl:hover,.sear:hover,.fav:hover{
+  text-decoration: underline;
+  color: rgb(23, 33, 39);
+}
+.nhl:active,.ojhl:active,.ushl:active,.ohl:active,.bchl:active,.ncaa:active,.ahl:active,.sear:active,.fav:hover{
+  text-decoration: underline;
+  color: rgb(23, 33, 39);
+}
+.sub{
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+
+.header,.header-create {
+    overflow: visible;
+    background-color: black;
+    padding: 15px 20px;
+    height: 60px;
+    transition-timing-function: ease-out;
+    transition: height .5s;
+  }
+
+ 
+  .header-center{
+    color: rgba(255, 255, 255, 0.749);
+    position: absolute;
+    width: 50%;
+    left:25%;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+  #down-centers{
+    margin-top: 100px;
+  }
+  .header-left {
+    float: left;
+    background-image: url('static/images/fits_logo.jpg');
+    background-position-x: right;
+  }
+  
+
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .date-header{
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown .dropbtn  {
+    font-size: 13px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+  }
+  .dropbtn-adjust{
+    font-size: 13px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+    display: none;
+  }
+  .dropbtn-date{
+    font-size: 13px;  
+    border: none;
+    outline: none;
+    color: white;
+    width: 6.5px;
+    padding-top: 11.5px;
+    padding-bottom: 11.5px;
+    padding-left: 20px;
+    padding-right: 5px;
+    background-color: inherit;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+  }
+  ::-webkit-calendar-picker-indicator{
+    margin-left: -15px;
+  } 
+  .submit-date{
+    font-size: 12px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 2px 16px;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 5px;
+    margin-bottom:5px;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+  }
+  .current-date{
+    font-size: 12px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 2px 1px;
+    padding-left: 7px;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 20px;
+    margin-top: 12px;
+    border-radius: 4px;
+    text-align: center;
+    display: inine;
+    vertical-align: center;
+  }
+  .adjust-date{
+    margin-left:14px;
+  }
+  .logout{
+    border: none;
+    outline: none;
+    color: white;
+    padding:5px 5px;
+    font-family: sans-serif;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+    width:100%;
+    left:0%;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+.logout:active,.dropbtn-adjust:active, .dropbtn:active,.dropbtn-date:active,.submit-date:active{
+    background-color: rgb(168, 86, 18);
+  }
+  .dropdown-sub,.dropdown-subfav{
+    float: right;
+    overflow: hidden;
+    position: block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .menu-right,.menu-right-favs{
+    float: right;
+    margin-right: 10px;
+    outline: none;
+  }
+  .menu-btns{
+    display: none;
+    font-size: 15px;  
+    border: none;
+    outline: none;
+    color: rgb(214, 211, 211);
+    width: 150px;
+    text-align: left;
+    padding: 13px 16px;
+    background-color: inherit;
+  }
+  .menu-btns:active{
+    font-weight: bold;
+    color: white;
+  }
+  .menu-drop,.menu-drop-create,.menu-drop-fav{
+    position: absolute;
+    background-color: rgba(228, 120, 31,.75);
+    height: 0px;
+    width: 100%;
+    left: 0;
+    display: block;
+    transition: height .5s;
+  }
+  
+
+  #dropMenu{
+    transition-timing-function: ease-out;
+  }
+  .trans-smooth{
+    display: block;
+    height: 130px;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .s-sub{
+    left: 0%;
+  }
+  .add-team-btn{
+    opacity: 0;
+    position: absolute;
+    margin-left: -50px;
+    height: 45px;
+    width: 50px;
+  }
+  .sub-image{
+    position:absolute;
+    width:50px;
+    height: 43px;
+    margin-left: -50px;
+  }
+  .add-team-btn:hover{
+    background-color:rgb(23, 33, 39);
+    opacity: .1;
+  }
+  #myInput {
+    box-sizing: border-box;
+    background-image: url('/static/images/search.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-size: contain;
+    background-position: 0%;
+
+  }
+  #myInput:focus {
+      outline: 3px solid #ddd;
+  }
+  #user-login {
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 14px 20px 12px 14px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-size: contain;
+
+  }
+  #user-login:focus {
+      outline: 3px solid #ddd;
+  }
+  .output{
+    width: 220px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 5px rgb(228, 120, 31);
+    display: block;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-top: 9px;
+    text-align: center;
+    font-family:sans-serif;
+  }
+  body{
+    min-height: 95vh;
+    position: relative;
+  }
+  footer{
+    width:100vw;
+    height: 80px;
+    position: relative;
+    background-color: rgb(228, 120, 31);
+    bottom: 0px;
+    color: white;
+    display: block;
+    text-align: center;
+  }
+  .center-foot{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px; 
+  }
+  .adjust-header,.adjust-header-create{
+    height: 185px;
+  }
+  .dropbtn-menu{
+    margin-top: 10px;
+    width: 45px;
+    height: 42px;
+    filter: brightness(1.2);
+    box-shadow:  0 0 3px rgb(255, 255, 255);
+  }
+  .dropbtn-menu:hover {
+    filter: brightness(.75);
+  }
+  .dropbtn-menu:active {
+    filter: brightness(.9);
+    outline: auto;
+    outline-color: rgb(180, 179, 179);
+  }
+  .active-menu{
+    filter: brightness(.9);
+    outline: auto;
+    outline-color: rgb(180, 179, 179);
+  }
+  .create-wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+  }
+  .create-body{
+    margin: auto;
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+    background-color: rgba(196, 196, 196, 0.324);
+    padding-top: 90px;
+    padding-bottom: 30px;
+    width: 70%;
+    height: 50%;
+    border-radius: 8px;
+  }
+  .create-title{
+    position: relative;
+    top:-35px;
+    color: rgb(205, 107, 27);
+    text-decoration: bold;
+  }
+  .create-status{
+    position: relative;
+    top:-25px;
+    color:rgb(96, 96, 96);
+  }
+  .create-user-input{
+    width:75%;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 20px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.3s;
+    outline: none;
+  }
+  .create-user-input:focus{
+    border: 3px solid rgb(85, 85, 85);
+  }
+  .dropbtn-user  {
+    font-size: 13px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 4px;
+    background-color: rgb(228, 120, 31);
+    margin-top: 10px;
+  }
+  .dropbtn-user:active, .dropbtn-user:hover{
+    background-color: rgb(228, 152, 89);
+  }
+  .status-red{
+    color: rgb(215, 119, 119);
+  }
+  .status-green{
+    color: rgb(115, 164, 98);
+  }
+  .status-regluar{
+    color:rgb(96, 96, 96);
+  }
+  .page-wrapper{
+    min-height: calc(100vh - 100px);
+    margin-bottom: 20px;
+  }
+  
+  .fav-list{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-size: contain;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    opacity: .75;
+  }
+  .sub-fav{
+    position: absolute;
+    left:77%;
+    opacity: 0;
+    height: 29px;
+    width: 40px;
+    margin-top: -5px;
+  }
+  .sub-imagecoverdel{
+    position:absolute;
+    width:20px;
+    height: 20px;
+    left:82%;
+    opacity: .8;
+  }
+  .sub-imagecover{
+    position:absolute;
+    width:43px;
+    height: 43px;
+    left:77%;
+    opacity: .8;
+  }
+  .sub-imagecover-date-next,.sub-imagecover-date-prev,.sub-imagecover-date-next-all,.sub-imagecover-date-prev-all{
+    position:absolute;
+    width:20px;
+    height: 20px;
+    margin-top:-1px;
+    left:95px;
+  }
+  .sub-imagecover-date-next{
+    left:180px;
+    margin-top: -18px;
+  }
+  .sub-imagecover-date-next-all{
+    margin-left: 208px;
+    margin-top: -19px;
+  }
+  .sub-imagecover-date-prev-all{
+    margin-left: 125px;
+  }
+  .prev-date,.next-date,.prev-date-all,.next-date-all{
+    border: none;
+    outline: none;
+    margin: 0;
+    margin-left: 9px;
+    margin-top: -1px;
+    position: absolute;
+    vertical-align: middle;
+    opacity: 0;
+    height: 20px;
+  }
+  .next-date{
+    margin-left: 95px;
+    margin-top:-18px;
+  }
+  .prev-date-all{
+    margin-left: 9px;
+  }
+  .next-date-all{
+    margin-left: 94px;
+    margin-top: -19px;
+  }
+  .prev-date:active,.next-date:active,.prev-date-all:active,.next-date-all:active{
+    background-color: rgb(0, 0, 0);
+    opacity: .4;
+  }
+  .sub-fav:active,.sub-fav:hover{
+    opacity: 0.2;
+    color:rgba(23, 33, 39, 0);
+    background-color: #333;
+  }
+  .league{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color:rgb(65, 65, 65);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    font-family: sans-serif;
+  }
+  .leage-title{
+    padding: 5px;
+    text-decoration: bold;
+  }
+  .drop-img{
+    position:absolute;
+    width:30px;
+    height: 30px;
+    left:82%;
+    opacity: .8;
+  }
+  .league-teams{
+    display:none;
+  }
+  .team-option{
+    padding-left: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(218, 218, 218, 0.564);
+  }
+  #contain-league-title:hover, #contain-league-title:active,.toggleactive{
+    background-color: rgb(196, 196, 196);
+  }
+  .team-option:hover,.team-option:active{
+    background-color: rgb(232, 230, 230);
+  }
+  @media screen and (max-width: 700px) {
+    .dropdown, .dropdown-subfav{
+      float: none;
+      display: block;
+      text-align: left;
+      margin-top: 5px;
+    }
+    .header{
+      height: 155px;
+    }
+    #league{
+      padding: 14px 32px;
+    }
+    #datePickerFav{
+      padding-left: 39px;
+      padding-right: 22px;
+    }
+    #login-btn{
+      padding: 14px 18px;
+    }
+    #down-center-fav{
+      margin-top: 50px;
+    }
+    .menu-right-favs{
+      margin-top: 50px;
+    }
+    ::-webkit-calendar-picker-indicator{
+      margin-left: -15px;
+    } 
+    .menu-drop{
+      margin-top: 100px;
+    }
+    .menu-drop-fav{
+      margin-top: 50px;
+    }
+    .adjust-header{
+      height: 285px;
+    }
+  }
+  .show {
+    display: block;
+  }
+  .hide{
+    display: none;
+  }

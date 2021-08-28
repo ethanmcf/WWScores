@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content="..." />
+    <title>Daves Scores</title>
+  </head>
+  <body  onload="provideScoresLink()"> 
+    <script>
+      let count = 0
+      function trans(){
+        count++;
+        document.getElementById("dropMenu").classList.toggle("trans-smooth")
+        
+        if(count%2 != 0){
+          setTimeout(function() {
+            document.getElementById("menu-btn2").classList.toggle("show")
+          }, (100));
+          
+          setTimeout(function() {
+            document.getElementById("menu-btn1").classList.toggle("show")
+          }, (250));
+          setTimeout(function() {
+            document.getElementById("menu-btn3").classList.toggle("show")
+          }, (350));
+        }else{
+          setTimeout(function() {
+            document.getElementById("menu-btn2").classList.toggle("show")
+          }, (250));
+          
+          setTimeout(function() {
+            document.getElementById("menu-btn1").classList.toggle("show")
+          }, (50));
+          setTimeout(function() {
+            document.getElementById("menu-btn3").classList.toggle("show")
+          }, (0));
+        }
+        document.getElementById("head").classList.toggle("adjust-header")
+        document.getElementById("menu-img").classList.toggle("active-menu")
+      }
+      function dropbarL() {
+        document.getElementById("dropLeague").classList.toggle("show");
+      }
+      function dropbarS() {
+        document.getElementById("dropSearch").classList.toggle("show");
+      }
+      function getNewDate(){
+        document.getElementById("cur-date").innerHTML = document.getElementById('datePicker').value
+      }
+      function provideScoresLink(){
+        setTimeout(function() {
+          /*NHL LINKS*/
+          var links = document.getElementById("nhl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+
+          var obj = document.get;
+          var myobj = document.getElementById("nhl-link-lst");
+          myobj.remove();
+          
+          if(document.body.contains(document.getElementById('nhl-no-game'))){
+            //pass
+          } else{
+            var teams = document.getElementsByClassName("nhl");
+            var count = 0;
+            var j = 0;
+            for (var i = 0; i < link_lst.length;i++){
+                _id = "nhl-href" + String(j);
+                teams[j].id = _id;
+                document.getElementById(_id).href = link_lst[i];
+                _id = "nhl-href" + String(j+1);
+                teams[j+1].id = _id;
+                document.getElementById(_id).href = link_lst[i];
+                j+=2;
+            }
+          }
+          /*AHL LINKS*/
+          var links = document.getElementById("ahl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("ahl-link-lst");
+          myobj.remove();
+          
+          if(document.body.contains(document.getElementById('ahl-no-game'))){
+              //pass
+          } else{
+            var teams = document.getElementsByClassName("ahl");
+            var count = 0;
+            var j = 0;
+
+            for (var i = 0; i < link_lst.length;i++){
+                _id = "ahl-href" + String(j);
+                teams[j].id = _id;
+                document.getElementById(_id).href = link_lst[i];
+                _id = "ahl-href" + String(j+1)
+                teams[j+1].id = _id;
+                document.getElementById(_id).href = link_lst[i];
+                j+=2;
+            }
+          }
+          /*OHL LINKS*/
+          var links = document.getElementById("ohl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("ohl-link-lst");
+          myobj.remove();
+
+          if(document.body.contains(document.getElementById('ohl-no-game'))){
+              //pass
+          } else{
+          var teams = document.getElementsByClassName("ohl");
+          var count = 0;
+          var j = 0;
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "ohl-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "ohl-href" + String(j+1);
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+            }
+          }
+          /*NCAA LINKS*/
+          var links = document.getElementById("ncaa-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("ncaa-link-lst");
+          myobj.remove();
+          
+          if(document.body.contains(document.getElementById('ncaa-no-game'))){
+              //pass
+          } else{
+          var teams = document.getElementsByClassName("ncaa");
+          var count = 0;
+          var j = 0;
+
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "ncaa-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "ncaa-href" + String(j+1)
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+            }
+          }
+          /*USHL LINKS*/
+          var links = document.getElementById("ushl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("ushl-link-lst");
+          myobj.remove();
+          if(document.body.contains(document.getElementById('ushl-no-game'))){
+              //pass
+          } else{
+          var teams = document.getElementsByClassName("ushl");
+          var count = 0;
+          var j = 0;
+
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "ushl-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "ushl-href" + String(j+1)
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+            }
+          }
+          /*OJHL LINKS*/
+          var links = document.getElementById("ojhl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("ojhl-link-lst");
+          myobj.remove();
+          if(document.body.contains(document.getElementById('ojhl-no-game'))){
+              //pass
+          } else{
+          var teams = document.getElementsByClassName("ojhl");
+          var count = 0;
+          var j = 0;
+
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "ojhl-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "ojhl-href" + String(j+1)
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+            }
+          }
+          /*BCHL LINKS*/
+          var links = document.getElementById("bchl-link-lst").innerHTML; 
+          var link_lst = links.split(" "); 
+          
+          var obj = document.get;
+          var myobj = document.getElementById("bchl-link-lst");
+          myobj.remove();
+          if(document.body.contains(document.getElementById('bchl-no-game'))){
+              //pass
+          } else{
+          var teams = document.getElementsByClassName("bchl");
+          var count = 0;
+          var j = 0;
+
+          for (var i = 0; i < link_lst.length;i++){
+              _id = "bchl-href" + String(j);
+              teams[j].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              _id = "bchl-href" + String(j+1)
+              teams[j+1].id = _id;
+              document.getElementById(_id).href = link_lst[i];
+              j+=2;
+            }
+          }
+          }, (0));
+        } 
+    </script>
+    <div class="page-wrapper">
+    <div id= "head" class="header">
+      <div class="menu-right">
+        <img id="menu-img" class="dropbtn-menu" src="{{url_for('static',filename='images/menu.png')}}" onclick="trans()">
+            <div id="dropMenu" class="menu-drop">
+              <form action="{{url_for('home')}}" method="POST">
+                  <button id="menu-btn2" class="menu-btns" type="submit" value="Home">All Scores</button>
+              </form>
+              <form action="{{url_for('favTeam')}}" method="POST">
+                <button id="menu-btn1" class="menu-btns" type="submit" value="Fav">Favorites</button>
+            </form>
+            <form action="{{url_for('createUser')}}" method="POST">
+              <button id="menu-btn3" class="menu-btns" type="submit" value="Fav">Create User</button>
+          </form>
+            </div>
+          </div>
+      <div class="header-left">
+        <div class="dropdown">
+          <button id='league' onclick="dropbarL()" class="dropbtn">League</button>
+          <div id="dropLeague" class="dropdown-content">
+            <a class = "dop" href="#nhl-index">NHL</a>
+            <a class = "dop" href="#ahl-index">AHL</a>
+            <a class = "dop" href="#ohl-index">OHL</a>
+            <a class = "dop" href="#ncaa-index">NCAA</a>
+            <a class = "dop" href="#ushl-index">USHL</a>
+            <a class = "dop" href="#ojhl-index">OJHL</a>
+            <a class = "dop" href="#bchl-index">BCHL</a>
+          </div> 
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" onclick="dropbarS()">Search Team</button>
+          <div id="dropSearch" class="dropdown-content">
+            <form action="{{url_for('teamSelect')}}" method="POST">
+              <input id="myInput" placeholder="Search" name="search-team"/> 
+            </form>
+          </div>
+        </div>
+        <div class="dropdown">
+          <form action="{{url_for('home')}}" method="POST">
+            <div class="align-date">
+              <img class="sub-imagecover-date-prev-all" src="{{url_for('static',filename='images/prev_date.png')}}">
+              <button class="prev-date-all" value="PREVIOUS" name='previous'></button>
+              <p class = "current-date"  id="cur-date">
+                {{date}}
+              </p>
+              <img class="sub-imagecover-date-next-all" src="{{url_for('static',filename='images/next_date.png')}}">
+              <button class="next-date-all" value="NEXT" name='next'></button>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    <div class="main">
+      <div class="position">
+        <!--NHL SCORES-->
+        <div class="sub">
+          <h1 id="nhl-index">NHL Scores</h1>
+        </div>
+        <p id="nhl-link-lst">{{nhl_links}}</p>
+        {%if l_nhl > 0%}
+        {%for game in nhl%}
+        <div class="output">
+          {%for team in game%}
+        <p>
+        <a class="nhl" id ="nhl-href" href="">
+            {{team}}
+        </a>
+        </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="nhl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+
+        <!--AHL SCORES-->
+        <div class="sub">
+          <h1 id="ahl-index">AHL Scores</h1>
+        </div>
+        <p id="ahl-link-lst">{{ahl_links}}</p>
+        {%if l_ahl > 0%}
+        {%for game in ahl%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="ahl" id ="ahl-href" href="">
+                {{team}}
+            </a>
+          </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="ahl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+        
+        <!--OHL SCORES-->
+        <div class="sub">
+          <h1 id="ohl-index">OHL Scores</h1>
+        </div>
+        <p id="ohl-link-lst">{{ohl_links}}</p>
+        {%if l_ohl > 0%}
+        {%for game in ohl%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="ohl" id ="ohl-href" href="">
+                {{team}}
+            </a>
+          </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="ohl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+        
+        <!--NCAA SCORES-->
+        <div class="sub">
+          <h1 id="ncaa-index">NCAA Scores</h1>
+        </div>
+        <p id="ncaa-link-lst">{{ncaa_links}}</p>
+        {%if l_ncaa > 0%}
+        {%for game in ncaa%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="ncaa" id ="ncaa-href" href="">
+                {{team}}
+            </a>
+            </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="ncaa-no-game"class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+
+        <!--USHL SCORES-->
+        <div class="sub">
+          <h1 id="ushl-index">USHL Scores</h1>
+        </div>
+        <p id="ushl-link-lst">{{ushl_links}}</p>
+        {%if l_ushl > 0%}
+        {%for game in ushl%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="ushl" id ="ushl-href" href="">
+                {{team}}
+            </a>
+          </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="ushl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+
+        <!--OJHL SCORES-->
+        <div class="sub">
+          <h1 id="ojhl-index">OJHL Scores</h1>
+        </div>
+        <p id="ojhl-link-lst" >{{ojhl_links}}</p>
+        {%if l_ojhl > 0%}
+        {%for game in ojhl%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="ojhl" id ="ojhl-href" href="">
+              {{team}}
+            </a>
+          </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="ojhl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+        
+
+        <!--BCHL SCORES-->
+        <div class="sub">
+          <h1 id="bchl-index">BCHL Scores</h1>
+        </div>
+        <p id="bchl-link-lst">{{bchl_links}}</p>
+        {%if l_bchl > 0%}
+        {%for game in bchl%}
+        <div class="output">
+          {%for team in game%}
+          <p>
+            <a class="bchl" id ="bchl-href" href="">
+              {{team}}
+            </a>
+          </p>
+          {%endfor%}
+        </div>
+        {%endfor%}
+        {%else%}
+        <div id="bchl-no-game" class="no-game">
+          <h1>No Games</h1>
+        </div>  
+        {%endif%}
+      </div>
+    </div>
+  </div>
+  </body>
+  <footer>
+    <div class='center-foot'>
+      <p id="foot">Developed by Ethan McFarland | David Speciale</p>
+    </div>
+  </footer> 
+</html>
+
+
